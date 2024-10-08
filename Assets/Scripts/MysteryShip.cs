@@ -10,14 +10,15 @@ public class MysteryShip : MonoBehaviour
 
     Vector2 leftDestination;
     Vector2 rightDestination;
+    Vector3 Offset = new Vector3(1, 0, 0);
     int direction = -1;
     bool isVisible;
 
     
     void Start()
     {
-        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero-Offset);
+        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right+Offset);
 
         //positionen där den kommer stanna utanför skärmen.
         leftDestination = new Vector2(leftEdge.x - 1f, transform.position.y);

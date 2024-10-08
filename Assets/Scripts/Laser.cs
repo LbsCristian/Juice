@@ -7,8 +7,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Laser : Projectile
 {
+    
+    ScreenShake shake;
     private void Awake()
     {
+        shake = Camera.main.GetComponent<ScreenShake>();
         direction = Vector3.up;
         speed = 100f;
     }
@@ -26,10 +29,18 @@ public class Laser : Projectile
     void CheckCollision(Collider2D collision)
     {
         Bunker bunker = collision.gameObject.GetComponent<Bunker>();
+        Invader invader = collision.gameObject.GetComponent<Invader>();
 
+        if (invader != null) //Om man träffar en invader så skakar kameran.
+        {
+            shake.shakeTime = 0.1f;
+            shake.shakeIntensity = 1f;
+        }
         if(bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
         {
             Destroy(gameObject);
+            Debug.Log("test");
         }
+
     }
 }
