@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2617057677729192423, guid: 0bca657ae32fb19468cc800a7caec20c, type: 3}
       propertyPath: animationTime
-      value: 1
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 2617057677729192423, guid: 0bca657ae32fb19468cc800a7caec20c, type: 3}
       propertyPath: animationSprites.Array.data[0]
@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5e68e408de93b0441b629e22b21af936, type: 3}
+    - target: {fileID: 6942571541497665313, guid: 0bca657ae32fb19468cc800a7caec20c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3915353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942571541497665313, guid: 0bca657ae32fb19468cc800a7caec20c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0076272488
+      objectReference: {fileID: 0}
     - target: {fileID: 6942571541497665313, guid: 0bca657ae32fb19468cc800a7caec20c, type: 3}
       propertyPath: m_IsTrigger
       value: 1
