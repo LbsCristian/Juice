@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3254053391776496779, guid: 870baa3274a9edb40a0148db45bcbe15, type: 3}
       propertyPath: animationTime
-      value: 1
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: -3254053391776496779, guid: 870baa3274a9edb40a0148db45bcbe15, type: 3}
       propertyPath: animationSprites.Array.data[0]

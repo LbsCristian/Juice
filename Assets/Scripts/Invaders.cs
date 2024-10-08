@@ -20,6 +20,8 @@ public class Invaders : MonoBehaviour
     {
         initialPosition = transform.position;
         CreateInvaderGrid();
+
+        InvokeRepeating("Rythm", 0, 0.43f);
     }
 
     private void Start()
@@ -105,8 +107,7 @@ public class Invaders : MonoBehaviour
     //Flyttar invaders åt sidan
     void Update()
     {
-        float speed = 1f;
-        transform.position += speed * Time.deltaTime * direction;
+        
 
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
@@ -131,9 +132,15 @@ public class Invaders : MonoBehaviour
     //Byter riktning och flytter ner ett steg.
     void AdvanceRow()
     {
-        direction = new Vector3(-direction.x, 0, 0);
+        direction = new Vector3(-direction.x , 0, 0);
         Vector3 position = transform.position;
         position.y -= 1f;
         transform.position = position;
+    }
+
+    void Rythm()
+    {
+        float speed = 200f;
+        transform.position += speed * direction * Time.deltaTime;
     }
 }

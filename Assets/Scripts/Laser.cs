@@ -13,7 +13,7 @@ public class Laser : Projectile
     {
         shake = Camera.main.GetComponent<ScreenShake>();
         direction = Vector3.up;
-        speed = 100f;
+        speed = 75f;
     }
 
     void Update()

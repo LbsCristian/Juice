@@ -90,4 +90,6 @@ public class MysteryShip : MonoBehaviour
             GameManager.Instance.OnMysteryShipKilled(this);
         }
     }
+
+    
 }
