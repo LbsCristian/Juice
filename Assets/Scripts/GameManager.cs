@@ -7,7 +7,8 @@ using UnityEditor.Timeline.Actions;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
+    [SerializeField]
+    ParticleSystem part;
     private Player player;
     private Invaders invaders;
     private MysteryShip mysteryShip;
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
         invaders = FindObjectOfType<Invaders>();
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
+        
+        
 
         NewGame();
     }
@@ -108,7 +111,11 @@ public class GameManager : MonoBehaviour
 
     public void OnInvaderKilled(Invader invader)
     {
+          
+        
+        
         invader.gameObject.SetActive(false);
+        
 
        
 
@@ -120,7 +127,14 @@ public class GameManager : MonoBehaviour
 
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
     {
+        if (part != null)
+        {
+            part.transform.position = mysteryShip.transform.position;
+            part.Play();
+        }
+        
         mysteryShip.gameObject.SetActive(false);
+        
     }
 
     public void OnBoundaryReached()
