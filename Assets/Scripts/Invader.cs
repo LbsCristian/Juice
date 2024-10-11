@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
-using UnityEditor.Timeline.Actions;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 
 
@@ -12,8 +12,10 @@ using UnityEngine;
 public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
-    public float animationTime;
-    public GameObject deathAnimation;
+    public gameObject deathAnimation;
+    public float bpm = 140;
+    float timing;
+   
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -23,15 +25,16 @@ public class Invader : MonoBehaviour
     {
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
+        timing = 60/bpm;
     }
 
     void Start()
     {
         //Anropar AnimateSprite med ett visst tidsintervall
-        InvokeRepeating( nameof(AnimateSprite) , animationTime, animationTime);
+        InvokeRepeating( nameof(AnimateSprite) , timing, timing);
     }
 
-    //pandlar mellan olika sprited för att skapa en animation
+    //pandlar mellan olika sprited fï¿½r att skapa en animation
     private void AnimateSprite()
     {
         animationFrame++;
@@ -53,7 +56,7 @@ public class Invader : MonoBehaviour
             
             GameManager.Instance.OnInvaderKilled(this);
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nï¿½tt nedre kanten
         {
             GameManager.Instance.OnBoundaryReached();
         }
