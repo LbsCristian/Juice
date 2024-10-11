@@ -12,6 +12,7 @@ using UnityEngine;
 public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
+    public gameObject deathAnimation;
     public float bpm = 140;
     float timing;
    
@@ -33,7 +34,7 @@ public class Invader : MonoBehaviour
         InvokeRepeating( nameof(AnimateSprite) , timing, timing);
     }
 
-    //pandlar mellan olika sprited för att skapa en animation
+    //pandlar mellan olika sprited fï¿½r att skapa en animation
     private void AnimateSprite()
     {
         animationFrame++;
@@ -48,9 +49,14 @@ public class Invader : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
+            if (deathAnimation != null)
+            {
+                Instantiate(deathAnimation, transform.position, Quaternion.identity);
+            }
+            
             GameManager.Instance.OnInvaderKilled(this);
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nått nedre kanten
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //nï¿½tt nedre kanten
         {
             GameManager.Instance.OnBoundaryReached();
         }

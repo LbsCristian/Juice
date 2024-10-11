@@ -175,3 +175,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   animationTime: 0.43
+  deathAnimation: {fileID: 445840418444990133, guid: 9190b0c20310dca4bb417f963a03d70e, type: 3}

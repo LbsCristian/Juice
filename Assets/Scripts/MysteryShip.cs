@@ -10,7 +10,7 @@ public class MysteryShip : MonoBehaviour
 
     Vector2 leftDestination;
     Vector2 rightDestination;
-    Vector3 Offset = new Vector3(1, 0, 0);
+    Vector3 Offset = new Vector3(0.1f, 0, 0);
     int direction = -1;
     bool isVisible;
 
@@ -86,8 +86,9 @@ public class MysteryShip : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {
-            SetInvisible();
             GameManager.Instance.OnMysteryShipKilled(this);
+            SetInvisible();
+            
         }
     }
 

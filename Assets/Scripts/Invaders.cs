@@ -7,6 +7,7 @@ using UnityEngine;
 public class Invaders : MonoBehaviour
 {
     public Invader[] prefab = new Invader[5];
+    public Color[] colors = new Color[5];
 
     private int row = 5;
     private int col = 11;
@@ -44,6 +45,7 @@ public class Invaders : MonoBehaviour
             for (int c = 0; c < col; c++)
             {
                 Invader tempInvader = Instantiate(prefab[r], transform);
+                //tempInvader.GetComponent<SpriteRenderer>().color = colors[r];
 
                 Vector3 position = rowPosition;
                 position.x += 2f * c;

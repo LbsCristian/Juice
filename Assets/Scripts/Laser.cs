@@ -30,13 +30,19 @@ public class Laser : Projectile
     {
         Bunker bunker = collision.gameObject.GetComponent<Bunker>();
         Invader invader = collision.gameObject.GetComponent<Invader>();
+        MysteryShip mysteryShip = collision.gameObject.GetComponent<MysteryShip>();
 
         if (invader != null) //Om man träffar en invader så skakar kameran.
         {
             shake.shakeTime = 0.1f;
             shake.shakeIntensity = 1f;
         }
-        if(bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
+        if (mysteryShip != null)
+        {
+            shake.shakeTime = 0.3f;
+            shake.shakeIntensity = 1.3f;
+        }
+        if (bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
         {
             Destroy(gameObject);
             Debug.Log("test");
