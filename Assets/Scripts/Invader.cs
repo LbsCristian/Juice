@@ -12,7 +12,7 @@ using UnityEngine;
 public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
-    public gameObject deathAnimation;
+    public GameObject deathAnimation;
     public float bpm = 140;
     float timing;
    
