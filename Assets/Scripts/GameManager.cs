@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
+using TMPro;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
     private Invaders invaders;
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
+
+    //public GameObject pointsText;
+    TextMeshProUGUI textComponent;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -28,6 +32,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        textComponent = FindObjectOfType<TextMeshProUGUI>();
     }
 
     private void OnDestroy()
@@ -56,6 +62,10 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
+
+        string pointsText = "Points: " + score;
+        textComponent.text = pointsText;
+
     }
 
     private void NewGame()
@@ -92,9 +102,9 @@ public class GameManager : MonoBehaviour
         invaders.gameObject.SetActive(false);
     }
 
-    private void SetScore(int score)
+    private void SetScore(int s)
     {
-        
+        this.score += s;
     }
 
     private void SetLives(int lives)
@@ -115,8 +125,8 @@ public class GameManager : MonoBehaviour
         
         
         invader.gameObject.SetActive(false);
-        
 
+        SetScore(10);
        
 
         if (invaders.GetInvaderCount() == 0)
