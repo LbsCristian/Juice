@@ -109,8 +109,8 @@ public class Invaders : MonoBehaviour
     //Flyttar invaders åt sidan
     void Update()
     {
-        
 
+        
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
 

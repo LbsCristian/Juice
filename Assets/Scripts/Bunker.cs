@@ -38,5 +38,6 @@ public class Bunker : MonoBehaviour
     public void ResetBunker()
     {
         gameObject.SetActive(true);
+        nrOfHits = 0;
     }
 }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private Invaders invaders;
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
+    float cameraSize;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        cameraSize = Camera.main.orthographicSize;
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -68,6 +70,10 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
+        invaders.enabled = true;
+        Camera.main.orthographicSize = cameraSize;
+        Camera.main.GetComponent<ScreenShake>().enabled = true;
+        Time.timeScale = 1f;
         invaders.ResetInvaders();
         invaders.gameObject.SetActive(true);
 
@@ -104,9 +110,28 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerKilled(Player player)
     {
-
+        invaders.enabled = false;
+        Camera.main.GetComponent<ScreenShake>().enabled = false; // stops the camera from going back to its normal position
+        Time.timeScale *= 0.1f;
+        Camera.main.transform.position = new Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y, -10);
+        StartCoroutine(Zoom());
+        part.transform.position = player.transform.position;
+        part.Play();
         player.gameObject.SetActive(false);
+        
+    }
+    public IEnumerator Zoom()
+    {
+        while (Camera.main.orthographicSize > 4)
+        {
+            Camera.main.orthographicSize -= 1;
+            yield return new WaitForSeconds(0.01f);
+            
+        }
+        NewGame();
 
+        
+        
     }
 
     public void OnInvaderKilled(Invader invader)
