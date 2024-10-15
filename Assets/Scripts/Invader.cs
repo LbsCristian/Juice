@@ -13,9 +13,8 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public GameObject deathAnimation;
-    public float bpm = 140;
-    float timing;
-   
+    
+    GameManager gm;
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -25,13 +24,13 @@ public class Invader : MonoBehaviour
     {
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
-        timing = 60/bpm;
+        gm = FindAnyObjectByType<GameManager>();
     }
 
     void Start()
     {
         //Anropar AnimateSprite med ett visst tidsintervall
-        InvokeRepeating( nameof(AnimateSprite) , timing, timing);
+        InvokeRepeating( nameof(AnimateSprite) , gm.timing, gm.timing);
     }
 
     //pandlar mellan olika sprited f�r att skapa en animation

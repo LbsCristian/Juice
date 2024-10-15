@@ -2,10 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
+using TMPro;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
+    public float bpm = 140;
+    public float timing;
+
     public static GameManager Instance { get; private set; }
     [SerializeField]
     ParticleSystem part;
@@ -14,6 +18,9 @@ public class GameManager : MonoBehaviour
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
     float cameraSize;
+
+    //public GameObject pointsText;
+    TextMeshProUGUI textComponent;
 
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
@@ -30,6 +37,10 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        textComponent = FindObjectOfType<TextMeshProUGUI>();
+        timing = 60 / bpm;
+
     }
 
     private void OnDestroy()
@@ -58,6 +69,10 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
+
+        string pointsText = "Points: " + score;
+        textComponent.text = pointsText;
+
     }
 
     private void NewGame()
@@ -98,9 +113,9 @@ public class GameManager : MonoBehaviour
         invaders.gameObject.SetActive(false);
     }
 
-    private void SetScore(int score)
+    private void SetScore(int s)
     {
-        
+        this.score += s;
     }
 
     private void SetLives(int lives)
@@ -122,7 +137,8 @@ public class GameManager : MonoBehaviour
         }
         
         player.gameObject.SetActive(false);
-        
+        SetScore(score=-score);
+
     }
     public IEnumerator Zoom()
     {
@@ -144,8 +160,8 @@ public class GameManager : MonoBehaviour
         
         
         invader.gameObject.SetActive(false);
-        
 
+        SetScore(10);
        
 
         if (invaders.GetInvaderCount() == 0)
@@ -161,7 +177,7 @@ public class GameManager : MonoBehaviour
             part.transform.position = mysteryShip.transform.position;
             part.Play();
         }
-        
+        SetScore(100);
         mysteryShip.gameObject.SetActive(false);
         
     }
