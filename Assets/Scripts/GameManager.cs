@@ -7,6 +7,9 @@ using TMPro;
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
+    public float bpm = 140;
+    public float timing;
+
     public static GameManager Instance { get; private set; }
     [SerializeField]
     ParticleSystem part;
@@ -36,6 +39,8 @@ public class GameManager : MonoBehaviour
         }
 
         textComponent = FindObjectOfType<TextMeshProUGUI>();
+        timing = 60 / bpm;
+
     }
 
     private void OnDestroy()

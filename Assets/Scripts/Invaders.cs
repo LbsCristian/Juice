@@ -17,12 +17,16 @@ public class Invaders : MonoBehaviour
 
     public Missile missilePrefab;
 
+    GameManager gm;
+
     private void Awake()
     {
         initialPosition = transform.position;
         CreateInvaderGrid();
 
-        InvokeRepeating("Rythm", 0, 0.43f);
+        gm = FindAnyObjectByType<GameManager>();
+
+        InvokeRepeating("Rythm", 0, gm.timing);
     }
 
     private void Start()
