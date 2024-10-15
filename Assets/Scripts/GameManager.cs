@@ -128,7 +128,8 @@ public class GameManager : MonoBehaviour
         part.transform.position = player.transform.position;
         part.Play();
         player.gameObject.SetActive(false);
-        
+        SetScore(score=-score);
+
     }
     public IEnumerator Zoom()
     {
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
             part.transform.position = mysteryShip.transform.position;
             part.Play();
         }
-        
+        SetScore(100);
         mysteryShip.gameObject.SetActive(false);
         
     }
