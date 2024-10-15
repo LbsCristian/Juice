@@ -8,9 +8,11 @@ public class Bunker : MonoBehaviour
 {
     int nrOfHits = 0;
     SpriteRenderer spRend;
+    Color oldColor;
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
+        oldColor = spRend.color;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,9 +23,9 @@ public class Bunker : MonoBehaviour
 
             //Ändrar färgen beroende på antal träffar.
             nrOfHits++;
-            Color oldColor = spRend.color;
+            
 
-            Color newColor = new Color(oldColor.r +(nrOfHits*0.1f), oldColor.g + (nrOfHits * 0.1f), oldColor.b + (nrOfHits * 0.1f));
+            Color newColor = new Color(oldColor.r +(nrOfHits*0.2f), oldColor.g + (nrOfHits * 0.2f), oldColor.b + (nrOfHits * 0.2f));
             
             spRend.color = newColor;
             
@@ -37,6 +39,7 @@ public class Bunker : MonoBehaviour
 
     public void ResetBunker()
     {
+        spRend.color = oldColor;
         gameObject.SetActive(true);
         nrOfHits = 0;
     }

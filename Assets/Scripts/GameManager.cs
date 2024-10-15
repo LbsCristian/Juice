@@ -115,8 +115,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale *= 0.1f;
         Camera.main.transform.position = new Vector3(player.gameObject.transform.position.x, player.gameObject.transform.position.y, -10);
         StartCoroutine(Zoom());
-        part.transform.position = player.transform.position;
-        part.Play();
+        if (part != null)
+        {
+            part.transform.position = player.transform.position;
+            part.Play();
+        }
+        
         player.gameObject.SetActive(false);
         
     }
