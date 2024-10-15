@@ -8,7 +8,7 @@ using UnityEngine;
 public class Laser : Projectile
 {
     
-    ScreenShake shake;
+    ScreenShake shake;    
     private void Awake()
     {
         shake = Camera.main.GetComponent<ScreenShake>();
@@ -35,7 +35,7 @@ public class Laser : Projectile
         if (invader != null) //Om man träffar en invader så skakar kameran.
         {
             shake.shakeTime = 0.1f;
-            shake.shakeIntensity = 1f;
+            shake.shakeIntensity = 1f;            
         }
         if (mysteryShip != null)
         {
