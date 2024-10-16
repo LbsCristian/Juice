@@ -59,7 +59,7 @@ public class MysteryShip : MonoBehaviour
 
   
     //flyttar den till en plast precis utanför scenen.
-    void SetInvisible()
+    public void SetInvisible()
     {
         isVisible = false;
 

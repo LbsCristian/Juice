@@ -146,7 +146,7 @@ public class Invaders : MonoBehaviour
 
     void Rythm()
     {
-        float speed = 200f;
-        transform.position += speed * direction * Time.deltaTime;
+        float speed = 1f;
+        transform.position += speed * direction;
     }
 }
