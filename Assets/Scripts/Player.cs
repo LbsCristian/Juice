@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -10,6 +11,15 @@ public class Player : MonoBehaviour
     public Laser laserPrefab;
     Laser laser;
     float speed = 5f;
+    
+
+    GameManager gm;
+
+    private void Awake()
+    {
+        gm = FindAnyObjectByType<GameManager>();
+        gm.songStartTime = Time.time;
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,6 +46,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && laser == null)
         {
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            CheckBeat();
         }
     }
 
@@ -44,6 +55,21 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
             GameManager.Instance.OnPlayerKilled(this);
+        }
+    }
+
+    void CheckBeat()
+    {
+        float elapsedTime = Time.time - gm.songStartTime;
+        float closestBeatTime = Mathf.Round(elapsedTime / gm.timing) * gm.timing;
+
+        if (Mathf.Abs(elapsedTime - closestBeatTime) <= gm.gracePeriod)
+        {
+            Debug.Log("Hit");
+        }
+        else
+        {
+            Debug.Log("Miss");
         }
     }
 }
