@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
     public Laser laserPrefab;
     Laser laser;
     float speed = 5f;
+    public ComboText ct;
     
 
     GameManager gm;
+    float horizontalInput;
 
     private void Awake()
     {
@@ -24,16 +26,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalInput = Input.GetAxisRaw("Horizontal");
         Vector3 position = transform.position;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            position.x -= speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            position.x += speed * Time.deltaTime;
-        }
+        position.x += speed * Time.deltaTime * horizontalInput;
+        
 
         Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
@@ -60,16 +57,22 @@ public class Player : MonoBehaviour
 
     void CheckBeat()
     {
+
         float elapsedTime = Time.time - gm.songStartTime;
         float closestBeatTime = Mathf.Round(elapsedTime / gm.timing) * gm.timing;
 
         if (Mathf.Abs(elapsedTime - closestBeatTime) <= gm.gracePeriod)
         {
             Debug.Log("Hit");
+            gm.Combo++;
+            ct.GetComponent<Animation>().Rewind();
+            ct.GetComponent<Animation>().Play();
+            
         }
         else
         {
             Debug.Log("Miss");
+            gm.Combo = 0;
         }
     }
 }

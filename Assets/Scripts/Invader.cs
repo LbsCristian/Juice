@@ -53,11 +53,11 @@ public class Invader : MonoBehaviour
                 Instantiate(deathAnimation, transform.position, Quaternion.identity);
             }
             
-            GameManager.Instance.OnInvaderKilled(this);
+            gm.OnInvaderKilled(this);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //n�tt nedre kanten
         {
-            GameManager.Instance.OnBoundaryReached();
+            gm.OnBoundaryReached();
         }
     }
 
