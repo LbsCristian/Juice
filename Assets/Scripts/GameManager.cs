@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             
         }
+        mysteryShip.SetInvisible();
         NewGame();
 
         
