@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public float bpm = 140;
     public float timing;
+    public float gracePeriod = 0.4f;
+    public float songStartTime;
 
     public static GameManager Instance { get; private set; }
     [SerializeField]
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
 
         string pointsText = "Points: " + score;
-        textComponent.text = pointsText;
+        //textComponent.text = pointsText;
 
     }
 
