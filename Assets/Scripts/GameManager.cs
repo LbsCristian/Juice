@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int Combo;
     public int points;
     
+    public ParticleSystem beatHitEffect;
 
     public static GameManager Instance { get; private set; }
     [SerializeField]
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     //public GameObject pointsText;
     TextMeshProUGUI textComponent;
 
-    //Används ej just nu, men ni kan använda de senare
+    //Anvï¿½nds ej just nu, men ni kan anvï¿½nda de senare
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 3;
 

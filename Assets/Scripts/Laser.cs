@@ -7,13 +7,23 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Laser : Projectile
 {
-    
+
     ScreenShake shake;    
     private void Awake()
     {
         shake = Camera.main.GetComponent<ScreenShake>();
         direction = Vector3.up;
         speed = 75f;
+       
+        
+    }
+    private void Start()
+    {
+        if (speed == 75f)
+        {
+            GameManager.Instance.beatHitEffect.Play();
+
+        }
     }
 
     void Update()
@@ -32,12 +42,12 @@ public class Laser : Projectile
         Invader invader = collision.gameObject.GetComponent<Invader>();
         MysteryShip mysteryShip = collision.gameObject.GetComponent<MysteryShip>();
 
-        if (invader != null) //Om man träffar en invader så skakar kameran.
+        if (invader != null&&speed==75) //Om man träffar en invader så skakar kameran.
         {
             shake.shakeTime = 0.1f;
             shake.shakeIntensity = 1f;            
         }
-        if (mysteryShip != null)
+        if (mysteryShip != null&&speed==75)
         {
             shake.shakeTime = 0.3f;
             shake.shakeIntensity = 1.3f;

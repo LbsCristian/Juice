@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public Laser laserPrefab;
     Laser laser;
     float speed = 5f;
-    public ComboText ct;
+    public ComboText comboText;
     
 
     GameManager gm;
@@ -64,15 +64,18 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(elapsedTime - closestBeatTime) <= gm.gracePeriod)
         {
             Debug.Log("Hit");
-            GameManager.Instance.Combo++;
-            ct.GetComponent<Animation>().Rewind();
-            ct.GetComponent<Animation>().Play();
+            gm.Combo++;
+            comboText.GetComponent<Animation>().Rewind();
+            comboText.GetComponent<Animation>().Play();
+            laser.GetComponent<SpriteRenderer>().color = Color.red;
             
         }
         else
         {
+            laser.GetComponent<TrailRenderer>().enabled = false;
             Debug.Log("Miss");
-            GameManager.Instance.Combo = 0;
+            gm.Combo = 0;
+            laser.speed *= 0.5f;
         }
     }
 }

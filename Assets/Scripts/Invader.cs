@@ -56,10 +56,11 @@ public class Invader : MonoBehaviour
             gm.OnInvaderKilled(this);
             GameManager.Instance.points += 10 * GameManager.Instance.Combo;
             Debug.Log(GameManager.Instance.points);
+            GameManager.Instance.OnInvaderKilled(this);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //n�tt nedre kanten
         {
-            gm.OnBoundaryReached();
+            GameManager.Instance.OnBoundaryReached();
         }
     }
 
