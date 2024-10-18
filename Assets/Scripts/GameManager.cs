@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         }
         
         player.gameObject.SetActive(false);
-        SetScore(score=-score);
+        SetScore(score=score-score);
 
     }
     public IEnumerator Zoom()
