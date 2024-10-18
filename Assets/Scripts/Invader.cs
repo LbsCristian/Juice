@@ -54,6 +54,8 @@ public class Invader : MonoBehaviour
             }
             
             gm.OnInvaderKilled(this);
+            GameManager.Instance.points += 10 * GameManager.Instance.Combo;
+            Debug.Log(GameManager.Instance.points);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //n�tt nedre kanten
         {

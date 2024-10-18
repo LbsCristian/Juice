@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(elapsedTime - closestBeatTime) <= gm.gracePeriod)
         {
             Debug.Log("Hit");
-            gm.Combo++;
+            GameManager.Instance.Combo++;
             ct.GetComponent<Animation>().Rewind();
             ct.GetComponent<Animation>().Play();
             
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         else
         {
             Debug.Log("Miss");
-            gm.Combo = 0;
+            GameManager.Instance.Combo = 0;
         }
     }
 }

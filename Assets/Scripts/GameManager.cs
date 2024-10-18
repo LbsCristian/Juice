@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public float gracePeriod = 0.4f;
     public float songStartTime;
     public int Combo;
+    public int points;
+    
 
     public static GameManager Instance { get; private set; }
     [SerializeField]
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour
         SetScore(0);
         SetLives(3);
         NewRound();
+        points = 0;
     }
 
     private void NewRound()

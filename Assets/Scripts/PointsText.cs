@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ComboText : MonoBehaviour
+public class PointsText : MonoBehaviour
 {
     // Start is called before the first frame update
- 
     TextMeshProUGUI text;
     
     void Start()
     {
+        
         text = GetComponent<TextMeshProUGUI>();
         
 
@@ -19,7 +19,7 @@ public class ComboText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = GameManager.Instance.Combo.ToString();
+        text.text = GameManager.Instance.points.ToString();
         
     }
 
