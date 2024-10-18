@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public Laser laserPrefab;
     Laser laser;
     float speed = 5f;
-    public ComboText ct;
+    public ComboText comboText;
     
 
     GameManager gm;
@@ -65,14 +65,17 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Hit");
             gm.Combo++;
-            ct.GetComponent<Animation>().Rewind();
-            ct.GetComponent<Animation>().Play();
+            comboText.GetComponent<Animation>().Rewind();
+            comboText.GetComponent<Animation>().Play();
+            laser.GetComponent<SpriteRenderer>().color = Color.red;
             
         }
         else
         {
+            laser.GetComponent<TrailRenderer>().enabled = false;
             Debug.Log("Miss");
             gm.Combo = 0;
+            laser.speed *= 0.5f;
         }
     }
 }

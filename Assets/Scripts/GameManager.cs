@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public float gracePeriod = 0.4f;
     public float songStartTime;
     public int Combo;
+    public ParticleSystem beatHitEffect;
 
     public static GameManager Instance { get; private set; }
     [SerializeField]
