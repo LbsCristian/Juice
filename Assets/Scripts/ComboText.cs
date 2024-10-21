@@ -16,7 +16,6 @@ public class ComboText : MonoBehaviour
     void Update()
     {
         text.text = GameManager.Instance.Combo.ToString();
-        
     }
 
 }
