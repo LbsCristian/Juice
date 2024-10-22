@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public float bpm = 140;
     public float timing;
-    public float gracePeriod = 0.4f;
+    public float gracePeriod;
     public float songStartTime;
     public int Combo;
     public int points;
@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
 
         textComponent = FindObjectOfType<TextMeshProUGUI>();
         timing = 60 / bpm;
+        gracePeriod = GameValues.Instance.gracePeriod2;
+
+        Debug.Log(gracePeriod);
 
     }
 
