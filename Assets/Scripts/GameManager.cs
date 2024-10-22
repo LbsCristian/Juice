@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         string pointsText = "Points: " + score;
         //textComponent.text = pointsText;
 
+       
     }
 
     private void NewGame()
