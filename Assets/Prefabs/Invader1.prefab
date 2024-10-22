@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1647780563789303219, guid: 870baa3274a9edb40a0148db45bcbe15, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1647780563789303219, guid: 870baa3274a9edb40a0148db45bcbe15, type: 3}
       propertyPath: m_IsTrigger

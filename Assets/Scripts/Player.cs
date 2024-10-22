@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -8,19 +9,22 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
+    
     public Laser laserPrefab;
     Laser laser;
     float speed = 5f;
     public ComboText comboText;
+
+    public float beatTime;
     
 
-    GameManager gm;
     float horizontalInput;
 
     private void Awake()
     {
-        gm = FindAnyObjectByType<GameManager>();
-        gm.songStartTime = Time.time;
+        
+        GameManager.Instance.songStartTime = Time.time;
+        
     }
 
     // Update is called once per frame
@@ -45,6 +49,21 @@ public class Player : MonoBehaviour
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
             CheckBeat();
         }
+        
+        float elapsedTime = Time.time - GameManager.Instance.songStartTime;
+        float closestBeatTime = Mathf.Round(elapsedTime / GameManager.Instance.timing) * GameManager.Instance.timing;
+
+        beatTime = elapsedTime - closestBeatTime;
+        
+
+        if (Mathf.Abs(elapsedTime - closestBeatTime) <= GameManager.Instance.gracePeriod)
+        {
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,15 +77,14 @@ public class Player : MonoBehaviour
     void CheckBeat()
     {
 
-        float elapsedTime = Time.time - gm.songStartTime;
-        float closestBeatTime = Mathf.Round(elapsedTime / gm.timing) * gm.timing;
+        float elapsedTime = Time.time - GameManager.Instance.songStartTime;
+        float closestBeatTime = Mathf.Round(elapsedTime / GameManager.Instance.timing) * GameManager.Instance.timing;
 
-        if (Mathf.Abs(elapsedTime - closestBeatTime) <= gm.gracePeriod)
+        if (Mathf.Abs(elapsedTime - closestBeatTime) <= GameManager.Instance.gracePeriod)
         {
             Debug.Log("Hit");
-            gm.Combo++;
-            comboText.GetComponent<Animation>().Rewind();
-            comboText.GetComponent<Animation>().Play();
+            
+            
             laser.GetComponent<SpriteRenderer>().color = Color.red;
             
         }
@@ -74,7 +92,7 @@ public class Player : MonoBehaviour
         {
             laser.GetComponent<TrailRenderer>().enabled = false;
             Debug.Log("Miss");
-            gm.Combo = 0;
+            GameManager.Instance.Combo = 0;
             laser.speed *= 0.5f;
         }
     }

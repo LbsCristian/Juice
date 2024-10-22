@@ -7,14 +7,14 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Laser : Projectile
 {
-
+    ComboText comboText;
     ScreenShake shake;    
     private void Awake()
     {
         shake = Camera.main.GetComponent<ScreenShake>();
         direction = Vector3.up;
         speed = 75f;
-       
+        comboText = FindAnyObjectByType<ComboText>();
         
     }
     private void Start()
@@ -45,7 +45,10 @@ public class Laser : Projectile
         if (invader != null&&speed==75) //Om man träffar en invader så skakar kameran.
         {
             shake.shakeTime = 0.1f;
-            shake.shakeIntensity = 1f;            
+            shake.shakeIntensity = 1f;
+            GameManager.Instance.Combo++;
+            comboText.GetComponent<Animation>().Rewind();
+            comboText.GetComponent<Animation>().Play();
         }
         if (mysteryShip != null&&speed==75)
         {
