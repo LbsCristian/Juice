@@ -27,7 +27,7 @@ public class Invader : MonoBehaviour
     {
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
-        gm = FindAnyObjectByType<GameManager>();
+        
         
         
     }
