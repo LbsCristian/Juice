@@ -43,10 +43,19 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        
 
         textComponent = FindObjectOfType<TextMeshProUGUI>();
         timing = 60 / bpm;
-        // gracePeriod = GameValues.Instance.gracePeriod2;
+
+        if (GameValues.Instance != null)
+        {
+            gracePeriod = GameValues.Instance.gracePeriod2;
+
+        }
+         
+        
+        
 
        
 
@@ -67,7 +76,8 @@ public class GameManager : MonoBehaviour
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
         
-        
+
+
 
         NewGame();
     }

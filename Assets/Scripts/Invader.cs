@@ -17,7 +17,7 @@ public class Invader : MonoBehaviour
     public GameObject deathAnimation;
     public GameObject floatingPoints;
     
-    GameManager gm;
+    
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -35,7 +35,7 @@ public class Invader : MonoBehaviour
     void Start()
     {
         //Anropar AnimateSprite med ett visst tidsintervall
-        InvokeRepeating( nameof(AnimateSprite) , gm.timing, gm.timing);
+        InvokeRepeating( nameof(AnimateSprite) , GameManager.Instance.timing, GameManager.Instance.timing);
     }
 
     //pandlar mellan olika sprited f�r att skapa en animation

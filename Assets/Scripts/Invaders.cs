@@ -16,17 +16,14 @@ public class Invaders : MonoBehaviour
     private Vector3 direction = Vector3.right;
 
     public Missile missilePrefab;
-
-    GameManager gm;
+    
 
     private void Awake()
     {
         initialPosition = transform.position;
         CreateInvaderGrid();
 
-        gm = FindAnyObjectByType<GameManager>();
-
-        InvokeRepeating("Rythm", 0, gm.timing);
+        InvokeRepeating("Rythm", 0, GameManager.Instance.timing);
     }
 
     private void Start()
