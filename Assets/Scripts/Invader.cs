@@ -14,7 +14,7 @@ public class Invader : MonoBehaviour
     public Sprite[] animationSprites = new Sprite[2];
     public GameObject deathAnimation;
     
-    GameManager gm;
+    
 
     SpriteRenderer spRend;
     int animationFrame;
@@ -24,13 +24,13 @@ public class Invader : MonoBehaviour
     {
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
-        gm = FindAnyObjectByType<GameManager>();
+        
     }
 
     void Start()
     {
         //Anropar AnimateSprite med ett visst tidsintervall
-        InvokeRepeating( nameof(AnimateSprite) , gm.timing, gm.timing);
+        InvokeRepeating( nameof(AnimateSprite) , GameManager.Instance.timing, GameManager.Instance.timing);
     }
 
     //pandlar mellan olika sprited f�r att skapa en animation
@@ -53,7 +53,7 @@ public class Invader : MonoBehaviour
                 Instantiate(deathAnimation, transform.position, Quaternion.identity);
             }
             
-            gm.OnInvaderKilled(this);
+            GameManager.Instance.OnInvaderKilled(this);
             GameManager.Instance.points += 10 * GameManager.Instance.Combo;
             Debug.Log(GameManager.Instance.points);
             GameManager.Instance.OnInvaderKilled(this);
