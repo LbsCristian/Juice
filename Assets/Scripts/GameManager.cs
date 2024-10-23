@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         
         
 
-        Debug.Log(gracePeriod);
+       
 
     }
 
@@ -89,9 +89,10 @@ public class GameManager : MonoBehaviour
             NewGame();
         }
 
-        string pointsText = "Points: " + score;
+       // string pointsText = "Points: " + score;
         //textComponent.text = pointsText;
 
+       
     }
 
     private void NewGame()
@@ -182,7 +183,7 @@ public class GameManager : MonoBehaviour
         
         invader.gameObject.SetActive(false);
 
-        SetScore(10);
+        //SetScore(10);
        
 
         if (invaders.GetInvaderCount() == 0)
