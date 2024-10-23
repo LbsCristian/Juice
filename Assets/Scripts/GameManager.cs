@@ -46,9 +46,9 @@ public class GameManager : MonoBehaviour
 
         textComponent = FindObjectOfType<TextMeshProUGUI>();
         timing = 60 / bpm;
-        gracePeriod = GameValues.Instance.gracePeriod2;
+        // gracePeriod = GameValues.Instance.gracePeriod2;
 
-        Debug.Log(gracePeriod);
+       
 
     }
 
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
             NewGame();
         }
 
-        string pointsText = "Points: " + score;
+       // string pointsText = "Points: " + score;
         //textComponent.text = pointsText;
 
        
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
         
         invader.gameObject.SetActive(false);
 
-        SetScore(10);
+        //SetScore(10);
        
 
         if (invaders.GetInvaderCount() == 0)
