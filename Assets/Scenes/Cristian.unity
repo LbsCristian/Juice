@@ -158,6 +158,8 @@ MonoBehaviour:
   songStartTime: 0
   Combo: 0
   points: 0
+  finalScore: 0
+  highScore: 0
   beatHitEffect: {fileID: 1584092598}
   part: {fileID: 1710210019}
 --- !u!4 &272446480
@@ -7170,7 +7172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 128, y: 194}
+  m_AnchoredPosition: {x: 59, y: 194}
   m_SizeDelta: {x: 21.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1689280854
@@ -7284,7 +7286,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -143.35596, w: 0}
+  m_margin: {x: 0, y: 0, z: -143.35594, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

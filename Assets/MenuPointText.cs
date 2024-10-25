@@ -17,10 +17,7 @@ public class MenuPointText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance != null)
-        {
-            print("wow");
-            text.text = GameManager.Instance.points.ToString();
-        }
+        text.text = "Score:" + GameManager.Instance.finalScore.ToString() + "\nHigh score:" + GameManager.Instance.highScore.ToString();
+
     }
 }

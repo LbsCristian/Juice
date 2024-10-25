@@ -7,6 +7,7 @@ public class PointsValues : MonoBehaviour
 {
     TextMeshPro tmp;
     float pointsValue = 10 * GameManager.Instance.Combo;
+    
 
     private void Awake()
     {

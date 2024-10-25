@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public int Combo;
     public int points;
     
+    public int finalScore;
+    public int highScore;
     
     public ParticleSystem beatHitEffect;
 
@@ -38,20 +40,25 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         cameraSize = Camera.main.orthographicSize;
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
+       
             Instance = this;
-        }
+        
 
         textComponent = FindObjectOfType<TextMeshProUGUI>();
         timing = 60 / bpm;
-        // gracePeriod = GameValues.Instance.gracePeriod2;
+        if (GameValues.Instance != null)
+        {
+            gracePeriod = GameValues.Instance.gracePeriod2;
+            
+            print(highScore);
 
-       
+        }
+        highScore = GameValues.Instance.currentHighScore;
+
+
+
+
+
 
     }
 
@@ -59,7 +66,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == this)
         {
-            Instance = null;
+            //Instance = null;
         }
     }
 
@@ -80,12 +87,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        
         if (lives <= 0 && Input.GetKeyDown(KeyCode.Return))
         {
             NewGame();
         }
-        if (song.isPlaying == false)
+        if (song.time>120)
         {
+            finalScore = points;
+            if (points>highScore)
+            {
+                highScore = points;
+;            }
             SceneManager.LoadScene("MainMenu");
             
         }
