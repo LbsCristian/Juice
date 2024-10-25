@@ -55,7 +55,8 @@ public class Player : MonoBehaviour
 
         beatTime = elapsedTime - closestBeatTime;
         
-
+        //kanske ska användas
+        /*
         if (Mathf.Abs(elapsedTime - closestBeatTime) <= GameManager.Instance.gracePeriod)
         {
             GetComponent<SpriteRenderer>().color = Color.green;
@@ -64,7 +65,9 @@ public class Player : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.red;
         }
+        */
     }
+       
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
