@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int Combo;
     public int points;
     
+    
     public ParticleSystem beatHitEffect;
 
     public static GameManager Instance { get; private set; }
@@ -37,21 +38,18 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         cameraSize = Camera.main.orthographicSize;
-        Instance = this;
-        
-        
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
 
         textComponent = FindObjectOfType<TextMeshProUGUI>();
         timing = 60 / bpm;
-
-        if (GameValues.Instance != null)
-        {
-            gracePeriod = GameValues.Instance.gracePeriod2;
-
-        }
-         
-        
-        
+        // gracePeriod = GameValues.Instance.gracePeriod2;
 
        
 

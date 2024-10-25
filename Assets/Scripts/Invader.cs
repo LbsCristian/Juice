@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
 using UnityEditor.Build.Content;
 using UnityEditor.TerrainTools;
 using UnityEngine;
@@ -13,6 +15,7 @@ public class Invader : MonoBehaviour
 {
     public Sprite[] animationSprites = new Sprite[2];
     public GameObject deathAnimation;
+    public GameObject floatingPoints;
     
     
 
@@ -24,6 +27,8 @@ public class Invader : MonoBehaviour
     {
         spRend = GetComponent<SpriteRenderer>();
         spRend.sprite = animationSprites[0];
+        
+        
         
     }
 
@@ -43,7 +48,10 @@ public class Invader : MonoBehaviour
         }
         spRend.sprite = animationSprites[animationFrame];
     }
-
+    private void Update()
+    {
+        
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
@@ -51,12 +59,13 @@ public class Invader : MonoBehaviour
             if (deathAnimation != null)
             {
                 Instantiate(deathAnimation, transform.position, Quaternion.identity);
+                Instantiate(floatingPoints, transform.position, quaternion.identity);
             }
-            
-            GameManager.Instance.OnInvaderKilled(this);
-            GameManager.Instance.points += 10 * GameManager.Instance.Combo;
+           
+            GameManager.Instance.points += ( 10 * GameManager.Instance.Combo);
             Debug.Log(GameManager.Instance.points);
             GameManager.Instance.OnInvaderKilled(this);
+          
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Boundary")) //n�tt nedre kanten
         {
