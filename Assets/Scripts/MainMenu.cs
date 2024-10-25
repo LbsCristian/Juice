@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
 
     public void startGame()
     {
-        SceneManager.LoadScene("Oscar");
+        SceneManager.LoadScene("Main");
     }
 
     public void easy()
