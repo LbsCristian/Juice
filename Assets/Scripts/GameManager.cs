@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
     float cameraSize;
+    AudioSource song;
 
     //public GameObject pointsText;
     TextMeshProUGUI textComponent;
@@ -35,14 +37,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         cameraSize = Camera.main.orthographicSize;
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
+        
         
 
         textComponent = FindObjectOfType<TextMeshProUGUI>();
@@ -75,7 +71,9 @@ public class GameManager : MonoBehaviour
         invaders = FindObjectOfType<Invaders>();
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
-        
+        song = FindAnyObjectByType<AudioSource>();
+        song.time = 0;
+
 
 
 
@@ -87,6 +85,11 @@ public class GameManager : MonoBehaviour
         if (lives <= 0 && Input.GetKeyDown(KeyCode.Return))
         {
             NewGame();
+        }
+        if (song.isPlaying == false)
+        {
+            SceneManager.LoadScene("MainMenu");
+            
         }
 
        // string pointsText = "Points: " + score;
@@ -199,7 +202,7 @@ public class GameManager : MonoBehaviour
             part.transform.position = mysteryShip.transform.position;
             part.Play();
         }
-        SetScore(100);
+        SetScore(500);
         mysteryShip.gameObject.SetActive(false);
         
     }
