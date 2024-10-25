@@ -17,6 +17,7 @@ public class PointsValues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         tmp.text = "+" + pointsValue.ToString();
     }
 }
