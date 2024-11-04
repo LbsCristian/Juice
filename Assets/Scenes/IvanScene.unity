@@ -591,6 +591,8 @@ MonoBehaviour:
   gracePeriod: 0.4
   songStartTime: 0
   Combo: 0
+  points: 0
+  beatHitEffect: {fileID: 0}
   part: {fileID: 977373535}
 --- !u!4 &607370125
 Transform:
@@ -5713,7 +5715,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: 4208804803114267347, guid: e26bd595bed6b5c4e96a0c03d6011d98, type: 3}
-  ct: {fileID: 0}
+  comboText: {fileID: 0}
+  beatTime: 0
 --- !u!50 &1458306798
 Rigidbody2D:
   serializedVersion: 4
